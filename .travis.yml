@@ -2,11 +2,10 @@ language: node_js
 node_js:
 - '5'
 deploy:
- - provider: releases
+  - provider: releases
     api_key:
       secure: mekFFmPo0yWmb2xO43kNC/c8a1jjEZDS9BcaEjE5hlkq2YqGObBU/BnW7am/6spllgmhPsN4mlDViw2mzhveKZr/kAjYL6NL8tZ/9jNsgh76/gltztP1Q1rjU3TFlw8G+rAziu1SIKrAU+uxjzWzkb87XdjPvZStLO4MQF6mNpCQwV1SJeQ0BJ0hSeRFO+5T8ejmMGCZMgJbeXF1qCskGffPAXOOF55AMFFWh7WPB2VX35exyqVXRWKL5H9rhKcQsuJt4N8QAugt+IC1AwEx7kIYPwigSRgMdZb2Lr2UagbPaMpEI/IEBDOFO0cX5QdncEWjYU3aMdY7irm4Umuu/p9uFx+S4rBDLm69weGRqGrb5Z2Jeu3tXhhXjfq/vj+IwDKWcj2eHzzQsIkruFNf9b9dTbiKqGoaVWeTvZ0TBM9rEqh1SRIc5OoRl1pgZIkBCsAAGyNGJvJ8DV8kNLNZLTHXVdnNX1uyZAlilSTBEOkH5RVlgPkDNBtwClknx5e5hz2s5ibxp7Ol+VHb5QMps8V3tdR3MPh0nTtA6hDwJvcSGV3RDZtRz/mAZkkZzHTN5RhNoM++ZizHgHZ7V1dtr4f53KD58f6IWx/YgkzfNCR6OeQcH8ZzaUSCNQ67ys5v2K9/ZDmOT9nEouWIJg3VR86a5xRmU8w0A/iwbtzaacA=
-    file:
-      - dist/hue-colors.js
+    file: dist/hue-colors.js
     skip_cleanup: true
     on:
       repo: tdukart/hue-colors
