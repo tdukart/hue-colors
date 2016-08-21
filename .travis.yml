@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '5'
+deploy:
+ - provider: releases
+    api_key:
+      secure: mekFFmPo0yWmb2xO43kNC/c8a1jjEZDS9BcaEjE5hlkq2YqGObBU/BnW7am/6spllgmhPsN4mlDViw2mzhveKZr/kAjYL6NL8tZ/9jNsgh76/gltztP1Q1rjU3TFlw8G+rAziu1SIKrAU+uxjzWzkb87XdjPvZStLO4MQF6mNpCQwV1SJeQ0BJ0hSeRFO+5T8ejmMGCZMgJbeXF1qCskGffPAXOOF55AMFFWh7WPB2VX35exyqVXRWKL5H9rhKcQsuJt4N8QAugt+IC1AwEx7kIYPwigSRgMdZb2Lr2UagbPaMpEI/IEBDOFO0cX5QdncEWjYU3aMdY7irm4Umuu/p9uFx+S4rBDLm69weGRqGrb5Z2Jeu3tXhhXjfq/vj+IwDKWcj2eHzzQsIkruFNf9b9dTbiKqGoaVWeTvZ0TBM9rEqh1SRIc5OoRl1pgZIkBCsAAGyNGJvJ8DV8kNLNZLTHXVdnNX1uyZAlilSTBEOkH5RVlgPkDNBtwClknx5e5hz2s5ibxp7Ol+VHb5QMps8V3tdR3MPh0nTtA6hDwJvcSGV3RDZtRz/mAZkkZzHTN5RhNoM++ZizHgHZ7V1dtr4f53KD58f6IWx/YgkzfNCR6OeQcH8ZzaUSCNQ67ys5v2K9/ZDmOT9nEouWIJg3VR86a5xRmU8w0A/iwbtzaacA=
+    file:
+      - dist/hue-colors.js
+    skip_cleanup: true
+    on:
+      repo: tdukart/hue-colors
+      tags: true
+  - provider: npm
+    email: tdukart@aloftinteractive.com
+    api_key:
+      secure: uYnNO9XFPQjeshDS8Il4vT0Sg+caD/Lzu5YDYURLKY3gL64NZTH1NY2PQ5u6vIC9yURQq/iALudy0W5xjUxvOGRKTGdze/HF32SbTliCinT6cymobj6Htxnw6bKbjP7ZSpispNBn0EoDgsnVct/DTxAdo5LhTCok1o9cG7LFMGk17Lgl74tA2dSgQ5aiVWDQ4bLR6jUGmyNE1uDkle91m8+/wNTmRlJtJgwH4cljlzdspMdJDEzqZ4FfovZGcjo6ZUiv6f+Riu2gBK7E6RCbfiMzytUMs4PXwuEQY3Dp7CWL/Por6wxsfTU5C5iGbmdo6vJgCLhEMYvLar0c/C7BZmqDvOwCbmjR1udi9cenKIC0WWSYS110RVXKI7ND2HEGtGPuZ8H92t5KAVkWNaFbC0PBdaCirHuP31ZSlizm4QcivlYaL8LoJ7zyjgsw6iw2I1tO2An3sNkEcFhs+3okro+A2msjkBEvFH99uxlmZtD/+J2X+FyMjKGrnBZVJPRlHx4rIAXYpkywAPw4/poioMe4LPHlUPtnbJGapKpzcS3gaMHjR3Q9MbmUQifNQGL2v3cS99CDFF8FQFwWK0nNUQhMdSSVXEtJGYjVIPJqlSRromBJ/aZKtXtmijAU2IR5J0JmHObFevJSKIq7FSudjksoQDrUmU5F3NILwB26ylQ=
+    on:
+      tags: true
+      repo: tdukart/hue-colors
