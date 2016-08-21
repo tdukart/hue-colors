@@ -1,6 +1,6 @@
 {
   "name": "hue-colors",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Color library for development with Philips Hue bulbs",
   "main": "dist/hue-colors.js",
   "scripts": {
