@@ -21,5 +21,17 @@
     "include-all": "^0.1.6",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdukart/hue-colors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tdukart/hue-colors/issues"
+  },
+  "homepage": "https://github.com/tdukart/hue-colors#readme"
 }
