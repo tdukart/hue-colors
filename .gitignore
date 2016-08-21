@@ -10,3 +10,4 @@ node_modules
 # Build and distribution files
 /build
 /dist
+/coverage

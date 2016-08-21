@@ -175,7 +175,7 @@ export default class ColorUtil {
 		if ( ! ColorUtil.isInLampsReach( xyPoint ) ) {
 			// Calculate the closest point on the color gamut triangle
 			// and use that as xy value See step 6 of color to xy.
-			xyPoint = xyPoint.getClosestPoint();
+			xyPoint = ColorUtil.getClosestReproduciblePoint( xyPoint );
 		}
 
 		// Calculate XYZ values Convert using the following formulas:

@@ -32,7 +32,7 @@ export default class Color {
 		color.red = red;
 		color.green = green;
 		color.blue = blue;
-		this.originalColor = COLOR_RGB;
+		color.originalColor = COLOR_RGB;
 		return color;
 	}
 
@@ -48,7 +48,7 @@ export default class Color {
 		color.x = x;
 		color.y = y;
 		color.brightness = brightness;
-		this.originalColor = COLOR_CIE;
+		color.originalColor = COLOR_CIE;
 		return color;
 	}
 
@@ -74,7 +74,7 @@ export default class Color {
 				this.green = rgb[1];
 				this.blue = rgb[2];
 			} else {
-				throw new InvalidColorException( 'Unable to process color' );
+				throw new InvalidColorException( 'Unable to process color, original is ' + this.originalColor );
 			}
 		}
 
@@ -99,11 +99,11 @@ export default class Color {
 		if ( null === this.x || null === this.y || null === this.brightness ) {
 			if ( COLOR_RGB === this.originalColor ) {
 				var cie = ColorUtil.getXYPointFromRGB( this.red, this.green, this.blue );
-				this.x = cie[0];
-				this.y = cie[1];
+				this.x = cie.x;
+				this.y = cie.y;
 				this.brightness = ColorUtil.getBrightnessFromRgb( this.red, this.green, this.blue );
 			} else {
-				throw new InvalidColorException( 'Unable to process color' );
+				throw new InvalidColorException( 'Unable to process color, original is ' + this.originalColor );
 			}
 		}
 
