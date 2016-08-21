@@ -1,0 +1,24 @@
+{
+  "name": "hue-colors",
+  "version": "1.0.0",
+  "description": "Color library for development with Philips Hue bulbs",
+  "main": "dist/hue-colors.js",
+  "scripts": {
+    "prepublish": "grunt dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Todd Dukart <tdukart@aloftinteractive.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.13.2",
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-newer": "^1.2.0",
+    "grunt-webpack": "^1.0.14",
+    "include-all": "^0.1.6",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
