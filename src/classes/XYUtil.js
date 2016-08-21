@@ -1,8 +1,9 @@
 import XYPoint from './XYPoint';
 
-/**
+/*
  * XY utilities. Many of the methods, as marked, were adapted from Bryan Johnson's work (http://bit.ly/2bHHjxd)
  */
+
 export default class XYUtil {
 
 	/**

@@ -5,10 +5,11 @@ export var Red = new XYPoint( 0.675, 0.322 ),
 	Lime = new XYPoint( 0.4091, 0.518 ),
 	Blue = new XYPoint( 0.167, 0.04 );
 
-/**
+/*
  * Color utilities. Many of the methods, as marked, were adapted from Bryan Johnson's work (http://bit.ly/2bHHjxd),
  * which itself was derived from Q42's C# Hue library (http://bit.ly/2bye7ul).
  */
+
 export default class ColorUtil {
 
 	/**
@@ -159,7 +160,7 @@ export default class ColorUtil {
 	 * @param {Number} x
 	 * @param {Number} y
 	 * @param {Number} brightness
-	 * @returns {[Number, Number, Number]}
+	 * @returns {Number[]}
 	 */
 	static getRGBFromXYAndBrightness( x, y, brightness ) {
 		var xyPoint = new XYPoint( x, y );

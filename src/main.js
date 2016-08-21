@@ -64,7 +64,7 @@ export default class Color {
 
 	/**
 	 * Converts the color to RGB. Note that the CIE-to-RGB conversion is necessarily approximate.
-	 * @returns {[Number, Number, Number]} Red, green, and blue components.
+	 * @returns {Number[]} Red, green, and blue components.
 	 */
 	toRgb() {
 		if ( null === this.red || null === this.green || null === this.blue ) {
@@ -93,7 +93,7 @@ export default class Color {
 	/**
 	 * Converts the color to a CIE color that Hue lamps are capable of showing. Note that the RGB-to-CIE conversion is
 	 * necessarily approximate.
-	 * @returns {[Number, Number, Number]} X, Y, and brightness components.
+	 * @returns {Number[]} X, Y, and brightness components.
 	 */
 	toCie() {
 		if ( null === this.x || null === this.y || null === this.brightness ) {
