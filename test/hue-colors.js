@@ -1,4 +1,4 @@
-import HueColors from '../src/main';
+import HueColors from '../src/index';
 
 describe( 'Color creation', () => {
 

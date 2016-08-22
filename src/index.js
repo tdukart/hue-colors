@@ -3,7 +3,7 @@ import ColorUtil from './classes/ColorUtil';
 const COLOR_RGB = 'rgb';
 const COLOR_CIE = 'cie';
 
-export default class Color {
+export default class HueColors {
 
 	/**
 	 * Constructs a new Color. Should usually be called by one of the static from___ methods.

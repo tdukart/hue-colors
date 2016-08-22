@@ -1,6 +1,6 @@
 module.exports = {
 	devtool: 'source-map',
-	entry: './src/main.js',
+	entry: './src/index.js',
 	output: {
 		path: 'dist',
 		filename: 'hue-colors.js'
