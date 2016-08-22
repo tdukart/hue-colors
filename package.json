@@ -2,7 +2,7 @@
   "name": "hue-colors",
   "version": "0.3.2",
   "description": "Color library for development with Philips Hue bulbs",
-  "main": "src/hue-colors.js",
+  "main": "src/index.js",
   "scripts": {
     "prepublish": "grunt dist",
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
