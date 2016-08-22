@@ -3,7 +3,7 @@ import ColorUtil from './classes/ColorUtil';
 const COLOR_RGB = 'rgb';
 const COLOR_CIE = 'cie';
 
-export default class HueColors {
+export default class HueColor {
 
 	/**
 	 * Constructs a new Color. Should usually be called by one of the static from___ methods.
@@ -25,10 +25,10 @@ export default class HueColors {
 	 * @param {Number} red   The red value, from 0 to 255.
 	 * @param {Number} green The green value, from 0 to 255.
 	 * @param {Number} blue  The blue value, from 0 to 255.
-	 * @returns {Color}
+	 * @returns {HueColor}
 	 */
 	static fromRgb( red, green, blue ) {
-		var color = new Color;
+		var color = new HueColor;
 		color.red = red;
 		color.green = green;
 		color.blue = blue;
@@ -41,10 +41,10 @@ export default class HueColors {
 	 * @param {Number} x          X coordinate.
 	 * @param {Number} y          Y coordinate.
 	 * @param {Number} brightness Brightness, from 0 to 1.
-	 * @returns {Color}
+	 * @returns {HueColor}
 	 */
 	static fromCIE( x, y, brightness ) {
-		var color = new Color;
+		var color = new HueColor;
 		color.x = x;
 		color.y = y;
 		color.brightness = brightness;
@@ -55,11 +55,11 @@ export default class HueColors {
 	/**
 	 * Constructs a new Color given a CSS-style hex code.
 	 * @param {String} hex The hex code.
-	 * @returns {Color}
+	 * @returns {HueColor}
 	 */
 	static fromHex( hex ) {
 		var rgb = ColorUtil.hexToRGB( hex );
-		return Color.fromRgb( rgb[0], rgb[1], rgb[2] );
+		return HueColor.fromRgb( rgb[0], rgb[1], rgb[2] );
 	}
 
 	/**
