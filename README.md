@@ -1,5 +1,7 @@
 #hue-colors
 
+[![Build Status](https://travis-ci.org/tdukart/hue-colors.svg?branch=master)](https://travis-ci.org/tdukart/hue-colors)
+
 A JavaScript/Node library for processing colors that can be shown on Philips Hue lamps.
 
 Documentation is available at [https://tdukart.github.io/hue-colors/](https://tdukart.github.io/hue-colors/)
