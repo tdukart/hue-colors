@@ -74,7 +74,7 @@ export default class HueColor {
 				this.green = rgb[1];
 				this.blue = rgb[2];
 			} else {
-				throw new InvalidColorException( 'Unable to process color, original is ' + this.originalColor );
+				throw new Error( 'Unable to process color, original is ' + this.originalColor );
 			}
 		}
 
@@ -103,13 +103,10 @@ export default class HueColor {
 				this.y = cie.y;
 				this.brightness = ColorUtil.getBrightnessFromRgb( this.red, this.green, this.blue );
 			} else {
-				throw new InvalidColorException( 'Unable to process color, original is ' + this.originalColor );
+				throw new Error( 'Unable to process color, original is ' + this.originalColor );
 			}
 		}
 
 		return [this.x, this.y, this.brightness];
 	}
-}
-
-export class InvalidColorException extends Error {
 }
