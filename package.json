@@ -4,8 +4,9 @@
   "description": "Color library for development with Philips Hue bulbs",
   "main": "dist/hue-colors.js",
   "scripts": {
-    "prepublish": "grunt dist",
-    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+    "prepublish": "grunt dist; ./buildPages.sh",
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS",
+    "build-docs": "grunt jsdoc"
   },
   "author": "Todd Dukart <tdukart@aloftinteractive.com>",
   "license": "MIT",
