@@ -4,7 +4,7 @@
   "description": "Color library for development with Philips Hue bulbs",
   "main": "dist/hue-colors.js",
   "scripts": {
-    "prepublish": "grunt dist; ./buildPages.sh",
+    "prepublish": "grunt dist",
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS",
     "build-docs": "grunt jsdoc"
   },
