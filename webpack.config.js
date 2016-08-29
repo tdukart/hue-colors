@@ -3,7 +3,8 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: 'dist',
-		filename: 'hue-colors.js'
+		filename: 'hue-colors.js',
+		libraryTarget: 'umd'
 	},
 	module: {
 		loaders: [
