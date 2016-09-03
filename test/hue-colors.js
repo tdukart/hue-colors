@@ -44,6 +44,38 @@ describe( 'Color conversion', () => {
 		var rgb = color.toRgb();
 
 		expect( rgb ).toEqual( [255, 0, 255] );
-	} )
+	} );
+
+	it( 'properly converts RGB to HSB', () => {
+		var orange = HueColors.fromRgb( 255, 127, 0 );
+		var orangeHsb = orange.toHsb();
+		expect( orangeHsb ).toEqual( [30, 100, 255] );
+
+		var blue = HueColors.fromRgb( 0, 0, 255 );
+		var blueHsb = blue.toHsb();
+		expect( blueHsb ).toEqual( [240, 100, 255] );
+
+		var black = HueColors.fromRgb( 0, 0, 0 );
+		var blackHsb = black.toHsb();
+		expect( blackHsb ).toEqual( [undefined, 0, 0] );
+
+		var gray = HueColors.fromRgb( 160, 160, 160 );
+		var grayHsb = gray.toHsb();
+		expect( grayHsb ).toEqual( [undefined, 0, 160] );
+	} );
+
+	it( 'properly converts HSB to RGB', () => {
+		var orange = HueColors.fromHsb( 30, 100, 255 );
+		var orangeRgb = orange.toRgb();
+		expect( orangeRgb ).toEqual( [255, 127, 0] );
+
+		var blue = HueColors.fromHsb( 240, 100, 255 );
+		var blueRgb = blue.toRgb();
+		expect( blueRgb ).toEqual( [0, 0, 255] );
+
+		var green = HueColors.fromHsb( 120, 100, 255 );
+		var greenRgb = green.toRgb();
+		expect( greenRgb ).toEqual( [0, 255, 0] );
+	} );
 
 } );
