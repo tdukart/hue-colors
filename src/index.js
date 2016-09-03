@@ -62,6 +62,11 @@ export default class HueColor {
 		return HueColor.fromRgb( rgb[0], rgb[1], rgb[2] );
 	}
 
+	static fromHsb( hue, saturation, brightness ) {
+		var rgb = ColorUtil.hsbToRgb( hue, saturation, brightness );
+		return HueColor.fromRgb( rgb[0], rgb[1], rgb[2] );
+	}
+
 	/**
 	 * Converts the color to RGB. Note that the CIE-to-RGB conversion is necessarily approximate.
 	 * @returns {Number[]} Red, green, and blue components.
@@ -108,5 +113,10 @@ export default class HueColor {
 		}
 
 		return [this.x, this.y, this.brightness];
+	}
+
+	toHsb() {
+		var rgb = this.toRgb();
+		return ColorUtil.rgbToHsb( this.red, this.green, this.blue );
 	}
 }

@@ -5,6 +5,22 @@ export var Red = new XYPoint( 0.675, 0.322 ),
 	Lime = new XYPoint( 0.4091, 0.518 ),
 	Blue = new XYPoint( 0.167, 0.04 );
 
+/**
+ * Fit a number into a range from 0 to `max`.
+ * @param {number} number
+ * @param {number} max
+ * @returns {number}
+ */
+var fitIntoRange = ( number, max ) => {
+	// Convert the hue to a valid value, 0 to 360.
+	if ( number >= max ) {
+		number = number % max;
+	} else if ( number < 0 ) {
+		number = number + (max * Math.floor( number / (0 - max) ));
+	}
+	return number;
+}
+
 /*
  * Color utilities. Many of the methods, as marked, were adapted from Bryan Johnson's work (http://bit.ly/2bHHjxd),
  * which itself was derived from Q42's C# Hue library (http://bit.ly/2bye7ul).
@@ -148,6 +164,112 @@ export default class ColorUtil {
 			greenHex = ColorUtil.componentToHex( green ),
 			blueHex = ColorUtil.componentToHex( blue );
 		return `${redHex}${greenHex}${blueHex}`;
+	}
+
+	/**
+	 * Converts HSB to RGB. Borrowed from https://www.cs.rit.edu/~ncs/color/t_convert.html
+	 * @param {number} hue        Hue, expressed in degrees. If outside the range 0-360, will be converted.
+	 * @param {number} saturation Saturation, integer between 0 and 100.
+	 * @param {number} brightness Brightness, integer between 0 and 255.
+	 * @returns {number[]} Array of [red, green, blue]
+	 */
+	static hsbToRgb( hue, saturation, brightness ) {
+		var red, green, blue;
+
+		hue = fitIntoRange( hue, 360 );
+
+		if ( 0 === saturation ) {
+			red = green = blue = brightness;
+		} else {
+			let huePartial = hue / 60; // There are six "sectors" in the hue, corresponding to the six primary colors.
+			let sector = Math.floor( huePartial );
+			let fractionalHue = huePartial - sector;
+			let p = (brightness / 255) * (100 - saturation) * (255 / 100);
+			let q = (brightness / 255) * (100 - saturation * fractionalHue) * (255 / 100);
+			let t = (brightness / 255) * (100 - saturation * (1 - fractionalHue)) * (255 / 100);
+
+			switch ( sector ) {
+				case 0:
+					red = brightness;
+					green = t;
+					blue = p;
+					break;
+				case 1:
+					red = q;
+					green = brightness;
+					blue = p;
+					break;
+				case 2:
+					red = p;
+					green = brightness;
+					blue = t;
+					break;
+				case 3:
+					red = p;
+					green = q;
+					blue = brightness;
+					break;
+				case 4:
+					red = t;
+					green = p;
+					blue = brightness;
+					break;
+				case 5:
+					red = brightness;
+					green = p;
+					blue = q;
+					break;
+			}
+
+		}
+
+		return [Math.round( red ), Math.round( green ), Math.round( blue )];
+	}
+
+	/**
+	 * Converts RGB to HSV. Adapted from https://www.cs.rit.edu/~ncs/color/t_convert.html
+	 * @param {number} red   The red value, from 0 to 255.
+	 * @param {number} green The green value, from 0 to 255.
+	 * @param {number} blue  The blue value, from 0 to 255.
+	 * @returns {number[]} Array of [hue, saturation, brightness]. For shades of gray, hue will be undefined.
+	 */
+	static rgbToHsb( red, green, blue ) {
+		var hue, saturation, brightness;
+
+		var min = Math.min( red, green, blue );
+		var max = Math.max( red, green, blue );
+		brightness = max;
+		var delta = max - min;
+
+		if ( max <= 0 ) {
+			// It's black.
+			hue = undefined; // Technically, black has no hue.
+			saturation = brightness = 0;
+		} else if ( min >= 255 ) {
+			//It's white.
+			hue = undefined; // Technically, white has no hue.
+			saturation = 0;
+			brightness = 255;
+		} else {
+			saturation = delta / max * 100;
+			if ( saturation === 0 ) {
+				hue = undefined; // Pure gray, so there's no hue.
+			} else {
+				if ( red === max ) {
+					hue = (green - blue) / delta;
+				} else if ( green === max ) {
+					hue = 2 + (blue - red) / delta;
+				} else {
+					hue = 4 + (red - green) / delta;
+				}
+
+				hue = hue * 60; // convert to degrees
+				hue = fitIntoRange( hue, 360 );
+				hue = Math.round( hue );
+			}
+		}
+
+		return [hue, Math.round( saturation ), Math.round( brightness )];
 	}
 
 	/**
