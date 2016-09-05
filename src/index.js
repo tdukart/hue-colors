@@ -2,6 +2,7 @@ import ColorUtil from './classes/ColorUtil';
 
 const COLOR_RGB = 'rgb';
 const COLOR_CIE = 'cie';
+const COLOR_HSB = 'hsb';
 
 export default class HueColor {
 
@@ -62,9 +63,20 @@ export default class HueColor {
 		return HueColor.fromRgb( rgb[0], rgb[1], rgb[2] );
 	}
 
+	/**
+	 * Constructs a new Color given HSB values.
+	 * @param {number} hue        Integer, 0 to 65535
+	 * @param {number} saturation Integer, 0 to 254
+	 * @param {number} brightness Integer, 0 to 254
+	 * @returns {HueColor}
+	 */
 	static fromHsb( hue, saturation, brightness ) {
-		var rgb = ColorUtil.hsbToRgb( hue, saturation, brightness );
-		return HueColor.fromRgb( rgb[0], rgb[1], rgb[2] );
+		var color = new HueColor;
+		color.hue = hue;
+		color.saturation = saturation;
+		color.brightness = brightness;
+		color.originalColor = COLOR_HSB;
+		return color;
 	}
 
 	/**
@@ -72,15 +84,24 @@ export default class HueColor {
 	 * @returns {Number[]} Red, green, and blue components.
 	 */
 	toRgb() {
+		var rgb = [null, null, null];
 		if ( null === this.red || null === this.green || null === this.blue ) {
-			if ( COLOR_CIE === this.originalColor ) {
-				var rgb = ColorUtil.getRGBFromXYAndBrightness( this.x, this.y, this.brightness );
-				this.red = rgb[0];
-				this.green = rgb[1];
-				this.blue = rgb[2];
-			} else {
-				throw new Error( 'Unable to process color, original is ' + this.originalColor );
+			switch ( this.originalColor ) {
+				case COLOR_CIE:
+					rgb = ColorUtil.getRGBFromXYAndBrightness( this.x, this.y, this.brightness );
+					break;
+				case COLOR_HSB:
+					rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
+					break;
+				default:
+					throw new Error( 'Unable to process color, original is ' + this.originalColor );
 			}
+		}
+
+		if ( null !== rgb[0] ) {
+			this.red = rgb[0];
+			this.green = rgb[1];
+			this.blue = rgb[2];
 		}
 
 		return [this.red, this.green, this.blue];
@@ -101,22 +122,48 @@ export default class HueColor {
 	 * @returns {Number[]} X, Y, and brightness components.
 	 */
 	toCie() {
+		var cie = {x: null, y: null};
 		if ( null === this.x || null === this.y || null === this.brightness ) {
-			if ( COLOR_RGB === this.originalColor ) {
-				var cie = ColorUtil.getXYPointFromRGB( this.red, this.green, this.blue );
-				this.x = cie.x;
-				this.y = cie.y;
-				this.brightness = ColorUtil.getBrightnessFromRgb( this.red, this.green, this.blue );
-			} else {
-				throw new Error( 'Unable to process color, original is ' + this.originalColor );
+			switch ( this.originalColor ) {
+				case COLOR_RGB:
+					cie = ColorUtil.getXYPointFromRGB( this.red, this.green, this.blue );
+					this.brightness = ColorUtil.getBrightnessFromRgb( this.red, this.green, this.blue );
+					break;
+				case COLOR_HSB:
+					var rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
+					cie = ColorUtil.getXYPointFromRGB( rgb[0], rgb[1], rgb[2] );
+					// We already know the brightness :-)
+					break;
+				default:
+					throw new Error( 'Unable to process color, original is ' + this.originalColor );
 			}
+		}
+
+		if ( null !== cie.x ) {
+			this.x = cie.x;
+			this.y = cie.y;
 		}
 
 		return [this.x, this.y, this.brightness];
 	}
 
+	/**
+	 * Converts the color to HSB.
+	 * @returns {Number[]}
+	 */
 	toHsb() {
-		var rgb = this.toRgb();
-		return ColorUtil.rgbToHsb( this.red, this.green, this.blue );
+		var hsb = [null, null, null];
+		if ( null === this.hue || null === this.saturation ) {
+			let rgb = this.toRgb();
+			hsb = ColorUtil.rgbToHsb( rgb[0], rgb[1], rgb[2] );
+		}
+
+		// Hue can be null-ish, so check saturation instead.
+		if ( null !== hsb[1] ) {
+			this.hue = hsb[0];
+			this.saturation = hsb[1];
+			this.brightness = hsb[2];
+		}
+		return [this.hue, this.saturation, this.brightness];
 	}
 }
