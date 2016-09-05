@@ -43,14 +43,14 @@ export default class HueColor {
 	 * Constructs a new Color given a CIE point and brightness.
 	 * @param {Number} x          X coordinate.
 	 * @param {Number} y          Y coordinate.
-	 * @param {Number} brightness Brightness, from 0 to 256.
+	 * @param {Number} brightness Brightness, from 0 to 254.
 	 * @returns {HueColor}
 	 */
 	static fromCIE( x, y, brightness ) {
 		var color = new HueColor;
 		color.x = x;
 		color.y = y;
-		color.brightness = brightness / 256;
+		color.brightness = brightness;
 		color.originalColor = COLOR_CIE;
 		return color;
 	}
