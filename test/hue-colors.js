@@ -78,4 +78,26 @@ describe( 'Color conversion', () => {
 		expect( greenRgb ).toEqual( [0, 255, 0] );
 	} );
 
+	it( 'properly converts color temperature to RGB', () => {
+		var cool = HueColors.fromCt( 153 );
+		var coolRgb = cool.toRgb();
+		expect( coolRgb ).toEqual( [255, 255, 255] );
+
+		var warm = HueColors.fromCt( 500 );
+		var warmRgb = warm.toRgb();
+		expect( warmRgb ).toEqual( [255, 137, 255] );
+	} );
+
+	it( 'refuses to convert RGB to color temperature', () => {
+		var rgbLight = HueColors.fromRgb( 0, 255, 255 );
+		var rgbCt = rgbLight.toCt();
+		expect( rgbCt ).toBeUndefined();
+	} );
+
+	it( 'allows lights defined with color temperature to return their color temperature', () => {
+		var ctLight = HueColors.fromCt( 200 );
+		var ctLightCt = ctLight.toCt();
+		expect( ctLightCt ).toEqual( 200 );
+	} );
+
 } );

@@ -2,6 +2,7 @@ import ColorUtil from './classes/ColorUtil';
 
 const COLOR_RGB = 'rgb';
 const COLOR_CIE = 'cie';
+const COLOR_CT = 'ct';
 
 export default class HueColor {
 
@@ -17,6 +18,7 @@ export default class HueColor {
 		this.brightness = null;
 		this.hue = null;
 		this.saturation = null;
+		this.temperature = null;
 		this.originalColor = null;
 	}
 
@@ -52,6 +54,13 @@ export default class HueColor {
 		return color;
 	}
 
+	static fromCt( colorTemperature ) {
+		var color = new HueColor;
+		color.temperature = colorTemperature;
+		color.originalColor = COLOR_CT;
+		return color;
+	}
+
 	/**
 	 * Constructs a new Color given a CSS-style hex code.
 	 * @param {String} hex The hex code.
@@ -72,9 +81,15 @@ export default class HueColor {
 	 * @returns {Number[]} Red, green, and blue components.
 	 */
 	toRgb() {
+		var rgb;
 		if ( null === this.red || null === this.green || null === this.blue ) {
 			if ( COLOR_CIE === this.originalColor ) {
-				var rgb = ColorUtil.getRGBFromXYAndBrightness( this.x, this.y, this.brightness );
+				rgb = ColorUtil.getRGBFromXYAndBrightness( this.x, this.y, this.brightness );
+				this.red = rgb[0];
+				this.green = rgb[1];
+				this.blue = rgb[2];
+			} else if ( COLOR_CT === this.originalColor ) {
+				rgb = ColorUtil.miredToRgb( this.temperature );
 				this.red = rgb[0];
 				this.green = rgb[1];
 				this.blue = rgb[2];
@@ -118,5 +133,13 @@ export default class HueColor {
 	toHsb() {
 		var rgb = this.toRgb();
 		return ColorUtil.rgbToHsb( this.red, this.green, this.blue );
+	}
+
+	toCt() {
+		if ( COLOR_CT !== this.originalColor ) {
+			return undefined;
+		} else {
+			return this.temperature;
+		}
 	}
 }
