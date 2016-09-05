@@ -291,7 +291,7 @@ export default class ColorUtil {
 		var xyPoint = new XYPoint( x, y );
 
 		if ( brightness === undefined ) {
-			brightness = 1;
+			brightness = 254;
 		}
 
 		// Check if the xy value is within the color gamut of the lamp.
@@ -304,7 +304,7 @@ export default class ColorUtil {
 		}
 
 		// Calculate XYZ values Convert using the following formulas:
-		var Y = brightness,
+		var Y = brightness / 254,
 			X = (Y / xyPoint.y) * xyPoint.x,
 			Z = (Y / xyPoint.y) * (1 - xyPoint.x - xyPoint.y);
 
