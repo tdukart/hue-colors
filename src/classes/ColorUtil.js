@@ -341,6 +341,52 @@ export default class ColorUtil {
 	};
 
 	/**
+	 * Convert a mired color temperature to RGB. Adapted from http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/.
+	 * @param {number} miredColorTemperature
+	 * @param {number} brightness
+	 * @returns {number[]}
+	 */
+	static miredToRgb( miredColorTemperature, brightness ) {
+		var kelvin = 1000000 / miredColorTemperature;
+		var red, green, blue;
+
+		// Calculate each color separately. Red:
+		if ( kelvin < 6600 ) {
+			red = 255;
+		} else {
+			red = (kelvin / 100) - 60;
+			red = 329.698727446 * red ^ (- 0.1332047592);
+		}
+
+		// Green:
+		if ( kelvin < 6600 ) {
+			green = kelvin / 100;
+			green = 99.4708025861 * Math.log( green ) - 161.1195681661
+		} else {
+			green = (kelvin / 100) - 60;
+			green = 288.1221695283 * green ^ (- 0.0755148492);
+		}
+
+		// Blue:
+		if ( kelvin >= 6600 ) {
+			blue = 255;
+		} else {
+			blue = kelvin - 10;
+			blue = 138.5177312231 * Math.log( blue ) - 305.0447927307;
+		}
+
+		var result = [red, green, blue];
+		result = result.map( ( value ) => {
+			value = Math.min( 255, value );
+			value = Math.max( 0, value );
+			value = value * (brightness / 254);
+			return Math.round( value );
+		} );
+
+		return result;
+	}
+
+	/**
 	 * Returns an XYPoint object containing the closest available CIE 1931
 	 * coordinates based on the RGB input values.
 	 *

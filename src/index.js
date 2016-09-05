@@ -2,6 +2,7 @@ import ColorUtil from './classes/ColorUtil';
 
 const COLOR_RGB = 'rgb';
 const COLOR_CIE = 'cie';
+const COLOR_CT = 'ct';
 const COLOR_HSB = 'hsb';
 
 export default class HueColor {
@@ -18,6 +19,7 @@ export default class HueColor {
 		this.brightness = null;
 		this.hue = null;
 		this.saturation = null;
+		this.temperature = null;
 		this.originalColor = null;
 	}
 
@@ -50,6 +52,14 @@ export default class HueColor {
 		color.y = y;
 		color.brightness = brightness / 256;
 		color.originalColor = COLOR_CIE;
+		return color;
+	}
+
+	static fromCt( colorTemperature, brightness ) {
+		var color = new HueColor;
+		color.temperature = colorTemperature;
+		color.brightness = brightness;
+		color.originalColor = COLOR_CT;
 		return color;
 	}
 
@@ -93,6 +103,9 @@ export default class HueColor {
 				case COLOR_HSB:
 					rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
 					break;
+				case COLOR_CT:
+					rgb = ColorUtil.miredToRgb( this.temperature, this.brightness );
+					break;
 				default:
 					throw new Error( 'Unable to process color, original is ' + this.originalColor );
 			}
@@ -122,7 +135,7 @@ export default class HueColor {
 	 * @returns {Number[]} X, Y, and brightness components.
 	 */
 	toCie() {
-		var cie = {x: null, y: null};
+		var cie = {x: null, y: null}, rgb;
 		if ( null === this.x || null === this.y || null === this.brightness ) {
 			switch ( this.originalColor ) {
 				case COLOR_RGB:
@@ -130,9 +143,13 @@ export default class HueColor {
 					this.brightness = ColorUtil.getBrightnessFromRgb( this.red, this.green, this.blue );
 					break;
 				case COLOR_HSB:
-					var rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
+					rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
 					cie = ColorUtil.getXYPointFromRGB( rgb[0], rgb[1], rgb[2] );
 					// We already know the brightness :-)
+					break;
+				case COLOR_CT:
+					rgb = ColorUtil.miredToRgb( this.temperature, this.brightness );
+					cie = ColorUtil.getXYPointFromRGB( rgb[0], rgb[1], rgb[2] );
 					break;
 				default:
 					throw new Error( 'Unable to process color, original is ' + this.originalColor );
@@ -165,5 +182,13 @@ export default class HueColor {
 			this.brightness = hsb[2];
 		}
 		return [this.hue, this.saturation, this.brightness];
+	}
+
+	toCt() {
+		if ( COLOR_CT !== this.originalColor ) {
+			return undefined;
+		} else {
+			return this.temperature;
+		}
 	}
 }
