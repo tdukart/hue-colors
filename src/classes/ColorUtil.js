@@ -168,25 +168,25 @@ export default class ColorUtil {
 
 	/**
 	 * Converts HSB to RGB. Borrowed from https://www.cs.rit.edu/~ncs/color/t_convert.html
-	 * @param {number} hue        Hue, expressed in degrees. If outside the range 0-360, will be converted.
-	 * @param {number} saturation Saturation, integer between 0 and 100.
-	 * @param {number} brightness Brightness, integer between 0 and 255.
+	 * @param {number} hue        Hue, integer between 0 and 65535.
+	 * @param {number} saturation Saturation, integer between 0 and 254.
+	 * @param {number} brightness Brightness, integer between 0 and 254.
 	 * @returns {number[]} Array of [red, green, blue]
 	 */
 	static hsbToRgb( hue, saturation, brightness ) {
 		var red, green, blue;
 
-		hue = fitIntoRange( hue, 360 );
+		hue = fitIntoRange( hue, 65535 );
 
 		if ( 0 === saturation ) {
 			red = green = blue = brightness;
 		} else {
-			let huePartial = hue / 60; // There are six "sectors" in the hue, corresponding to the six primary colors.
+			let huePartial = hue / (65535 / 6); // There are six "sectors" in the hue, corresponding to the six primary colors.
 			let sector = Math.floor( huePartial );
 			let fractionalHue = huePartial - sector;
-			let p = (brightness / 255) * (100 - saturation) * (255 / 100);
-			let q = (brightness / 255) * (100 - saturation * fractionalHue) * (255 / 100);
-			let t = (brightness / 255) * (100 - saturation * (1 - fractionalHue)) * (255 / 100);
+			let p = (brightness / 254) * (254 - saturation);
+			let q = (brightness / 254) * (254 - saturation * fractionalHue);
+			let t = (brightness / 254) * (254 - saturation * (1 - fractionalHue));
 
 			switch ( sector ) {
 				case 0:
@@ -227,7 +227,7 @@ export default class ColorUtil {
 	}
 
 	/**
-	 * Converts RGB to HSV. Adapted from https://www.cs.rit.edu/~ncs/color/t_convert.html
+	 * Converts RGB to HSB. Adapted from https://www.cs.rit.edu/~ncs/color/t_convert.html
 	 * @param {number} red   The red value, from 0 to 255.
 	 * @param {number} green The green value, from 0 to 255.
 	 * @param {number} blue  The blue value, from 0 to 255.
@@ -245,13 +245,13 @@ export default class ColorUtil {
 			// It's black.
 			hue = undefined; // Technically, black has no hue.
 			saturation = brightness = 0;
-		} else if ( min >= 255 ) {
+		} else if ( min >= 254 ) {
 			//It's white.
 			hue = undefined; // Technically, white has no hue.
 			saturation = 0;
-			brightness = 255;
+			brightness = 254;
 		} else {
-			saturation = delta / max * 100;
+			saturation = delta / max * 254;
 			if ( saturation === 0 ) {
 				hue = undefined; // Pure gray, so there's no hue.
 			} else {
@@ -263,13 +263,16 @@ export default class ColorUtil {
 					hue = 4 + (red - green) / delta;
 				}
 
-				hue = hue * 60; // convert to degrees
-				hue = fitIntoRange( hue, 360 );
+				hue = hue * (65535 / 6); // convert to Hue's 0-65535 range
+				hue = fitIntoRange( hue, 65535 );
 				hue = Math.round( hue );
 			}
 		}
 
-		return [hue, Math.round( saturation ), Math.round( brightness )];
+		saturation = Math.min( Math.round( saturation ), 254 );
+		brightness = Math.min( Math.round( brightness ), 254 );
+
+		return [hue, saturation, brightness];
 	}
 
 	/**
