@@ -55,9 +55,10 @@ export default class HueColor {
 		return color;
 	}
 
-	static fromCt( colorTemperature ) {
+	static fromCt( colorTemperature, brightness ) {
 		var color = new HueColor;
 		color.temperature = colorTemperature;
+		color.brightness = brightness;
 		color.originalColor = COLOR_CT;
 		return color;
 	}
@@ -103,7 +104,7 @@ export default class HueColor {
 					rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
 					break;
 				case COLOR_CT:
-					rgb = ColorUtil.miredToRgb( this.temperature );
+					rgb = ColorUtil.miredToRgb( this.temperature, this.brightness );
 					break;
 				default:
 					throw new Error( 'Unable to process color, original is ' + this.originalColor );
@@ -134,7 +135,7 @@ export default class HueColor {
 	 * @returns {Number[]} X, Y, and brightness components.
 	 */
 	toCie() {
-		var cie = {x: null, y: null};
+		var cie = {x: null, y: null}, rgb;
 		if ( null === this.x || null === this.y || null === this.brightness ) {
 			switch ( this.originalColor ) {
 				case COLOR_RGB:
@@ -142,9 +143,13 @@ export default class HueColor {
 					this.brightness = ColorUtil.getBrightnessFromRgb( this.red, this.green, this.blue );
 					break;
 				case COLOR_HSB:
-					var rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
+					rgb = ColorUtil.hsbToRgb( this.hue, this.saturation, this.brightness );
 					cie = ColorUtil.getXYPointFromRGB( rgb[0], rgb[1], rgb[2] );
 					// We already know the brightness :-)
+					break;
+				case COLOR_CT:
+					rgb = ColorUtil.miredToRgb( this.temperature, this.brightness );
+					cie = ColorUtil.getXYPointFromRGB( rgb[0], rgb[1], rgb[2] );
 					break;
 				default:
 					throw new Error( 'Unable to process color, original is ' + this.originalColor );

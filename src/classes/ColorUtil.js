@@ -343,9 +343,10 @@ export default class ColorUtil {
 	/**
 	 * Convert a mired color temperature to RGB. Adapted from http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/.
 	 * @param {number} miredColorTemperature
+	 * @param {number} brightness
 	 * @returns {number[]}
 	 */
-	static miredToRgb( miredColorTemperature ) {
+	static miredToRgb( miredColorTemperature, brightness ) {
 		var kelvin = 1000000 / miredColorTemperature;
 		var red, green, blue;
 
@@ -378,6 +379,7 @@ export default class ColorUtil {
 		result = result.map( ( value ) => {
 			value = Math.min( 255, value );
 			value = Math.max( 0, value );
+			value = value * (brightness / 254);
 			return Math.round( value );
 		} );
 
