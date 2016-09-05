@@ -47,13 +47,17 @@ describe( 'Color conversion', () => {
 	} );
 
 	it( 'properly converts RGB to HSB', () => {
-		var orange = HueColors.fromRgb( 255, 127, 0 );
+		var orange = HueColors.fromRgb( 254, 93, 0 );
 		var orangeHsb = orange.toHsb();
-		expect( orangeHsb ).toEqual( [30, 100, 255] );
+		expect( orangeHsb[0] ).toBeWithinRange( 3995, 4005 );
+		expect( orangeHsb[1] ).toEqual( 254 );
+		expect( orangeHsb[2] ).toEqual( 254 );
 
 		var blue = HueColors.fromRgb( 0, 0, 255 );
 		var blueHsb = blue.toHsb();
-		expect( blueHsb ).toEqual( [240, 100, 255] );
+		expect( blueHsb[0] ).toBeWithinRange( 43685, 43695 );
+		expect( blueHsb[1] ).toEqual( 254 );
+		expect( blueHsb[2] ).toEqual( 254 );
 
 		var black = HueColors.fromRgb( 0, 0, 0 );
 		var blackHsb = black.toHsb();
@@ -65,17 +69,17 @@ describe( 'Color conversion', () => {
 	} );
 
 	it( 'properly converts HSB to RGB', () => {
-		var orange = HueColors.fromHsb( 30, 100, 255 );
+		var orange = HueColors.fromHsb( 4000, 254, 254 );
 		var orangeRgb = orange.toRgb();
-		expect( orangeRgb ).toEqual( [255, 127, 0] );
+		expect( orangeRgb ).toEqual( [254, 93, 0] );
 
-		var blue = HueColors.fromHsb( 240, 100, 255 );
+		var blue = HueColors.fromHsb( 43690, 254, 254 );
 		var blueRgb = blue.toRgb();
-		expect( blueRgb ).toEqual( [0, 0, 255] );
+		expect( blueRgb ).toEqual( [0, 0, 254] );
 
-		var green = HueColors.fromHsb( 120, 100, 255 );
+		var green = HueColors.fromHsb( 21845, 254, 254 );
 		var greenRgb = green.toRgb();
-		expect( greenRgb ).toEqual( [0, 255, 0] );
+		expect( greenRgb ).toEqual( [0, 254, 0] );
 	} );
 
 	it( 'properly converts color temperature to RGB', () => {
