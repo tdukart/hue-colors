@@ -1,0 +1,5 @@
+{
+  "name": "hue-colors",
+  "main": "hue-colors.d.ts",
+  "dependencies": {}
+}
