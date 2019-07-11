@@ -19,7 +19,7 @@
     "grunt-jsdoc": "^2.1.0",
     "grunt-newer": "^1.2.0",
     "grunt-webpack": "^1.0.14",
-    "include-all": "^1.0.0",
+    "include-all": "^4.0.3",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine-core": "^2.4.1",
     "karma": "^1.2.0",
