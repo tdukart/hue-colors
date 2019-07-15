@@ -21,7 +21,7 @@
     "grunt-webpack": "^1.0.14",
     "include-all": "^4.0.3",
     "istanbul-instrumenter-loader": "^2.0.0",
-    "jasmine-core": "^2.4.1",
+    "jasmine-core": "^3.4.0",
     "karma": "^4.1.0",
     "karma-babel-preprocessor": "^7.0.0",
     "karma-chrome-launcher": "^3.0.0",
