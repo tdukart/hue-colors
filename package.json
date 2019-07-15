@@ -24,7 +24,7 @@
     "jasmine-core": "^2.4.1",
     "karma": "^4.1.0",
     "karma-babel-preprocessor": "^6.0.1",
-    "karma-chrome-launcher": "^2.0.0",
+    "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-matchers": "^4.0.2",
