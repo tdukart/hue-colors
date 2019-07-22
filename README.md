@@ -10,3 +10,7 @@ Documentation is available at [https://tdukart.github.io/hue-colors/](https://td
 ## Disclaimer
 Koninklijke Philips Electronics N.V., the manufacturer of Hue bulbs, is not affiliated with this project. Hue is a
 trademark and/or registered trademark of Koninklijke Philips Electronics N.V.
+
+&copy; 2016 Todd Dukart. MIT license.
+
+Portions of this project copyright &copy; 2013 Bryan Johnson
