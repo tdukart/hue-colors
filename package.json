@@ -31,8 +31,8 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.13",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.15.0",
+    "webpack-dev-server": "^1.16.5"
   },
   "directories": {
     "doc": "docs"
