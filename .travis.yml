@@ -9,7 +9,7 @@ deploy:
 - provider: releases
   api_key:
     secure: n5wZvXZ5dG2RqBJDW3IVOdqL8o7MNYdFdZhTzO+4MZ9B/T56YUFdqDxljitFmUCXqb6amQhFhSDMh47MKdH3kXk9xNIyEoEAdj+p9y5dCCS2tXI/huW+qSz98tQPOdJp93PvHvbJTdcC4FMTaR8wb+oDfRWewmRZd0yQtsWGANxdfxrzM3im/RWKSBvUSQTahCl2JSA+NNHHO4bDwPhPaoJxeruiB9D3Tb1362cm4md1jEzaa/9xym8XJ6ZmGhbtealzs9DoDeES+c0GcX6gA3L43HTKhA6dGzAOIABK3x+UV4juHuTjS6hRemg4tNbEKscrlzEiiUBSRPiGh2vvnJUpVVaQHB2No1IjVH+UCpmfvITrSFxWgauVFF747rgFSRNvpYCOgPwBhwVjwI/JSKFiHOrr5kXrNE072SeJ4rRkKxIqwKCnE+u+9pd6v0DlwqAPGqlqdqJymnWd6zcFiKror10Xi0QNzIs2NgPW+O+XlkjFaHKhLErfxW7l6bp/6ZjSoDuKexVwyxtgDIeiB4vs09zY7kFKr+HUBhB4xJV65VthAq2rl+/Z9y1cI6tKYNh3Nyu2gcQYVYgLLhkZsi4n2ItvGly1HHdkYsPfV3+/Lvs5S5ki2GVtihGkAmhcIKggnC10TXokCOmIDSCRkTGGXO1ga3MbhMPNKcltL8k=
-  file: dist/hue-colors.js
+  file: dist/index.js
   skip_cleanup: true
   on:
     repo: tdukart/hue-colors

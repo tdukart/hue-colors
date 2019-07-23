@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Color</title>
+    <title>JSDoc: Global</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Color</h1>
+    <h1 class="page-title">Global</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>Color</h2>
+        <h2></h2>
         
     
 </header>
@@ -38,28 +38,7 @@
     
         
 
-    
-
-    <h4 class="name" id="Color"><span class="type-signature"></span>new Color<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Constructs a new Color. Should usually be called by one of the static from___ methods.
-</div>
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 <dl class="details">
@@ -89,11 +68,6 @@
     
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
 
     
 
@@ -103,20 +77,7 @@
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -126,7 +87,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -140,7 +103,9 @@
 
     
 
-    <h4 class="name" id=".fromCIE"><span class="type-signature">(static) </span>fromCIE<span class="signature">(x, y, brightness)</span><span class="type-signature"> &rarr; {<a href="Color.html">Color</a>}</span></h4>
+    
+    <h4 class="name" id="fromCIE"><span class="type-signature"></span>fromCIE<span class="signature">(x, y, brightness)</span><span class="type-signature"> &rarr; {HueColor}</span></h4>
+    
 
     
 
@@ -245,7 +210,7 @@
 
             
 
-            <td class="description last">Brightness, from 0 to 1.</td>
+            <td class="description last">Brightness, from 0 to 254.</td>
         </tr>
 
     
@@ -286,7 +251,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line46">line 46</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
@@ -296,6 +261,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -320,7 +287,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Color.html">Color</a></span>
+<span class="param-type">HueColor</span>
 
 
     </dd>
@@ -330,12 +297,16 @@
 
 
 
+
+
         
             
 
     
 
-    <h4 class="name" id=".fromHex"><span class="type-signature">(static) </span>fromHex<span class="signature">(hex)</span><span class="type-signature"> &rarr; {<a href="Color.html">Color</a>}</span></h4>
+    
+    <h4 class="name" id="fromHex"><span class="type-signature"></span>fromHex<span class="signature">(hex)</span><span class="type-signature"> &rarr; {HueColor}</span></h4>
+    
 
     
 
@@ -435,7 +406,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line60">line 60</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -445,6 +416,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -469,7 +442,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Color.html">Color</a></span>
+<span class="param-type">HueColor</span>
 
 
     </dd>
@@ -479,12 +452,217 @@
 
 
 
+
+
         
             
 
     
 
-    <h4 class="name" id=".fromRgb"><span class="type-signature">(static) </span>fromRgb<span class="signature">(red, green, blue)</span><span class="type-signature"> &rarr; {<a href="Color.html">Color</a>}</span></h4>
+    
+    <h4 class="name" id="fromHsb"><span class="type-signature"></span>fromHsb<span class="signature">(hue, saturation, brightness)</span><span class="type-signature"> &rarr; {HueColor}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Constructs a new Color given HSB values.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Integer, 0 to 65535</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>saturation</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Integer, 0 to 254</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>brightness</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Integer, 0 to 254</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line83">line 83</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HueColor</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="fromRgb"><span class="type-signature"></span>fromRgb<span class="signature">(red, green, blue)</span><span class="type-signature"> &rarr; {HueColor}</span></h4>
+    
 
     
 
@@ -630,7 +808,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line30">line 30</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -640,6 +818,8 @@
 
     
 </dl>
+
+
 
 
 
@@ -664,7 +844,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Color.html">Color</a></span>
+<span class="param-type">HueColor</span>
 
 
     </dd>
@@ -674,12 +854,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toCie"><span class="type-signature"></span>toCie<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Number>}</span></h4>
+    
 
     
 
@@ -731,7 +915,7 @@ necessarily approximate.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line98">line 98</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -741,6 +925,8 @@ necessarily approximate.
 
     
 </dl>
+
+
 
 
 
@@ -779,12 +965,16 @@ necessarily approximate.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id="toHex"><span class="type-signature"></span>toHex<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
 
     
 
@@ -835,7 +1025,7 @@ necessarily approximate.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line88">line 88</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line127">line 127</a>
     </li></ul></dd>
     
 
@@ -845,6 +1035,8 @@ necessarily approximate.
 
     
 </dl>
+
+
 
 
 
@@ -879,12 +1071,122 @@ necessarily approximate.
 
 
 
+
+
         
             
 
     
 
+    
+    <h4 class="name" id="toHsb"><span class="type-signature"></span>toHsb<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Number>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Converts the color to HSB.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line171">line 171</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Number></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="toRgb"><span class="type-signature"></span>toRgb<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;Number>}</span></h4>
+    
 
     
 
@@ -935,7 +1237,7 @@ necessarily approximate.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line69">line 69</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -945,6 +1247,8 @@ necessarily approximate.
 
     
 </dl>
+
+
 
 
 
@@ -983,6 +1287,8 @@ necessarily approximate.
 
 
 
+
+
         
     
 
@@ -999,13 +1305,13 @@ necessarily approximate.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#fromCIE">fromCIE</a></li><li><a href="global.html#fromHex">fromHex</a></li><li><a href="global.html#fromHsb">fromHsb</a></li><li><a href="global.html#fromRgb">fromRgb</a></li><li><a href="global.html#toCie">toCie</a></li><li><a href="global.html#toHex">toHex</a></li><li><a href="global.html#toHsb">toHsb</a></li><li><a href="global.html#toRgb">toRgb</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Aug 21 2016 17:02:37 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Jul 22 2019 20:19:45 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
