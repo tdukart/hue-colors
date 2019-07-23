@@ -1,6 +1,6 @@
 export default class XYPoint {
-	constructor( x, y ) {
-		this.x = x;
-		this.y = y;
-	}
+    constructor( x, y ) {
+        this.x = x;
+        this.y = y;
+    }
 }
