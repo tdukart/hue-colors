@@ -4,6 +4,7 @@
   "description": "Color library for development with Philips Hue bulbs",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
     "prepare": "rollup -c",
