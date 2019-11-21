@@ -39,6 +39,13 @@ describe( 'Color conversion', () => {
         expect( hex ).toEqual( '1040ff' );
     } );
 
+    it( 'properly converts HSB to Hex', () => {
+        var orange = HueColors.fromHsb( 4000, 254, 254 );
+        var hex = orange.toHex();
+
+        expect( hex ).toBe( 'fe5d00' );
+    } );
+
     it( 'properly converts Hex to RGB', () => {
         var color = HueColors.fromHex( 'ff00ff' );
         var rgb = color.toRgb();

@@ -125,7 +125,8 @@ export default class HueColor {
      * @returns {String}
      */
     toHex() {
-        return ColorUtil.rgbToHex( this.red, this.green, this.blue );
+        const rgb = this.toRgb();
+        return ColorUtil.rgbToHex( rgb[ 0 ], rgb[ 1 ], rgb[ 2 ] );
     }
 
     /**
